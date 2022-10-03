@@ -1,0 +1,1 @@
+export const sectionList = ["HOME", "FWC", "QAT", "ECU", "SEN", "NED", "ENG", "IRN", "USA", "WAL", "ARG", "KSA", "MEX", "POL", "FRA", "AUS", "DEN", "TUN", "ESP", "CRC", "GER", "JPN", "BEL", "CAN", "MAR", "CRO", "BRA", "SRB", "SUI", "CMR", "POR", "GHA", "URU", "KOR", "BELIEVERS"]
