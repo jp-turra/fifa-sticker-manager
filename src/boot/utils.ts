@@ -16,7 +16,7 @@ export default boot(({app}) => {
     app.mixin({
         computed: {
             store() {
-                return { ...mapStores(useAppStore) }["appStore"]
+                return useAppStore()
             }
         }
     })
