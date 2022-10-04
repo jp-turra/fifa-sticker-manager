@@ -22,6 +22,7 @@
             <!-- <q-input rounded v-model="nome" type="text" label="Qual o seu nome?" />
             <q-btn rounded outline color="primary" icon="check" label="Salvar" @click="saveName" /> -->
             <q-checkbox color="secondary" v-model="blockOwnedStickers" label="Block owned stickers" />
+            <!-- TODO: Implement search for some card -->
           </div>
 
           <div class="column text-h6 text-secondary">
