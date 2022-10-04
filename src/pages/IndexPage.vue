@@ -9,6 +9,16 @@
           </div>
 
           <div class="text-h6 q-my-lg column q-gutter-y-md">
+            Progress: {{ownedStickers}} of {{totalStickers}}
+            <q-linear-progress
+              rounded
+              animation-speed="2000"
+              size="10px"
+              :value="relativeOwnedSticker"
+              color="positive"
+              track-color="primary"
+              class="q-mt-sm"
+            />
             <!-- <q-input rounded v-model="nome" type="text" label="Qual o seu nome?" />
             <q-btn rounded outline color="primary" icon="check" label="Salvar" @click="saveName" /> -->
           </div>
@@ -51,6 +61,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { sectionList, AlbumInterface, HOME_INDEX, BLV_INDEX, FWC_INDEX, believerCount, fwcCount, teamCount } from 'src/interface/album.interface';
+import { type } from 'os';
 export default defineComponent({
   name: 'IndexPage',
   data() {
@@ -87,6 +98,20 @@ export default defineComponent({
         return this.store.getAlbum || this.setupAlbum()
       }
     },
+
+    totalStickers(): number {
+      const album = this.albumList as any
+      return typeof album == 'object' ? Object.keys(album).length : 0
+    },
+    ownedStickers(): number {
+      const album = this.albumList as any
+      return typeof album == 'object' ? Object.values(album).filter((item) => item).length : 0
+    },
+    relativeOwnedSticker() {
+      const owned = this.ownedStickers as number
+      const total = this.totalStickers as number
+      return owned/total
+    }
   },
 
   methods: {
@@ -97,8 +122,9 @@ export default defineComponent({
       const album: AlbumInterface = {}
       for (let item in sectionList) {
         const limit = item == FWC_INDEX ? fwcCount : item == BLV_INDEX ? believerCount : teamCount
-        
-        for (let index = 1; index <= limit; index++) {
+        const initial = item == FWC_INDEX ? 0 : 1
+
+        for (let index = initial; index <= limit; index++) {
           const card = `${sectionList[item]} ${index}`
 
           album[card] = false
