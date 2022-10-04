@@ -1,6 +1,7 @@
 import { mapStores } from "pinia";
 import { boot } from "quasar/wrappers";
 import { useAppStore } from "src/stores/store";
+import {version} from "../../package.json"
 
 const appStore = { ...mapStores(useAppStore) }["appStore"]();
 /**
@@ -17,6 +18,10 @@ export default boot(({app}) => {
         computed: {
             store() {
                 return useAppStore()
+            },
+            app_version() {
+                console.log("v ", version)
+                return version
             }
         }
     })
@@ -24,4 +29,5 @@ export default boot(({app}) => {
 
 export interface UtilsInterface {
     store: typeof appStore;
+    app_version: string
 }

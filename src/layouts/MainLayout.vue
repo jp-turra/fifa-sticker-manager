@@ -7,7 +7,7 @@
           Sitcker Manager
         </q-toolbar-title>
 
-        <div>v{{ version }}</div>
+        <div>v{{ app_version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -34,7 +34,6 @@ export default defineComponent({
 
   data() {
     return {
-      version: "1.0.0",
       sections: ["HOME"]
     }
   },
