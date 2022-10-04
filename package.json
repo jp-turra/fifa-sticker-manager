@@ -1,6 +1,6 @@
 {
   "name": "copa-sticker-count",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A sticker manager for the world football cup album",
   "productName": "Sticker Cup Manager",
   "author": "Turra <joao.t06@hotmail.com>",
@@ -9,18 +9,20 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "vue-i18n": "^9.2.2",
-    "pinia": "^2.0.11",
     "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "pinia": "^2.0.11",
+    "pinia-plugin-persistedstate-2": "^2.0.1",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
+    "@quasar/app-webpack": "^3.0.0",
     "@types/node": "^12.20.21",
-    "@quasar/app-webpack": "^3.0.0"
+    "workbox-webpack-plugin": "^6.5.4"
   },
   "browserslist": [
     "last 10 Chrome versions",
