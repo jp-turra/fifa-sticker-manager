@@ -5,12 +5,14 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     tab: "HOME",
     sections: sectionList,
-    album: {} as AlbumInterface
+    album: {} as AlbumInterface,
+    blockOwnedStickers: false
   }),
   getters: {
     getCurrentTab: (state) => state.tab,
     getSections: (state) => state.sections,
-    getAlbum: (state) => state.album
+    getAlbum: (state) => state.album,
+    getBlockOwnedStickers: (state) => state.blockOwnedStickers
   },
   actions: {
     setCurrentTab(newTab: string) {
@@ -18,6 +20,9 @@ export const useAppStore = defineStore('app', {
     },
     setAlbum(album: AlbumInterface) {
       this.album = album
+    },
+    setBlockOwnedStickers(value: boolean = true) {
+      this.blockOwnedStickers = value
     }
   },
 });
