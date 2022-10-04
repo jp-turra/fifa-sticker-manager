@@ -8,7 +8,7 @@
             Sticker Manager
           </div>
 
-          <div class="text-h6 q-my-lg column q-gutter-y-md">
+          <div class="column text-h6 q-my-lg column q-gutter-y-md items-center">
             Progress: {{ownedStickers}} of {{totalStickers}}
             <q-linear-progress
               rounded
@@ -21,10 +21,11 @@
             />
             <!-- <q-input rounded v-model="nome" type="text" label="Qual o seu nome?" />
             <q-btn rounded outline color="primary" icon="check" label="Salvar" @click="saveName" /> -->
+            <q-checkbox color="secondary" v-model="blockOwnedStickers" label="Block owned stickers" />
           </div>
 
-          <div class="text-h6 text-secondary">
-            Select a section above to go there
+          <div class="column text-h6 text-secondary">
+            <span>Select a section above to go there</span>
           </div>
         </div>
 
@@ -38,19 +39,19 @@
 
           <div class="row q-mt-lg q-px-xl justify-center" v-if="section == 'FWC'">
             <div class="col-xs-6 col-sm-4 col-md-3" :class="albumList[`${section} ${index}`] ? '' : 'text-bold'" v-for="index in fwcCount" left-label >
-              <q-checkbox color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
+              <q-checkbox :disable="blockOwnedStickers" color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
             </div>
           </div>
 
           <div class="row q-mt-xl q-px-xl justify-center" v-else-if="section == 'BELIEVERS'">
             <div class="col-4" :class="albumList[`${section} ${index}`] ? '' : 'text-bold'" v-for="index in believerCount" left-label >
-              <q-checkbox color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
+              <q-checkbox :disable="blockOwnedStickers" color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
             </div>
           </div>
 
           <div class="row q-mt-xl q-px-xl justify-center" v-else>
             <div class="col-6" :class="albumList[`${section} ${index}`] ? '' : 'text-bold'" v-for="index in teamCount" left-label >
-              <q-checkbox color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
+              <q-checkbox :disable="blockOwnedStickers" color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
             </div>
           </div>
         </div>
@@ -100,6 +101,15 @@ export default defineComponent({
       },
       get(): AlbumInterface {
         return this.store.getAlbum || this.setupAlbum()
+      }
+    },
+
+    blockOwnedStickers: {
+      set(value: boolean) {
+        this.store.setBlockOwnedStickers(value)
+      },
+      get(): boolean {
+        return this.store.getBlockOwnedStickers || false
       }
     },
 
