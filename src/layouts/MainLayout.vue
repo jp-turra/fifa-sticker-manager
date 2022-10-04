@@ -16,7 +16,7 @@
         v-model="tab"
         class="text-white"
       >
-        <q-tab v-for="section, index in sections" :key="index" :name="section" :label="section" />
+        <q-tab v-for="section, index in sections" :key="index" :name="section" :label="section" v-show="section != 'HOME'"/>
       </q-tabs>
     </q-footer>
 

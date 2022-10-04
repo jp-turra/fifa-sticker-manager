@@ -1,6 +1,6 @@
 <template>
   <q-page class="row items-center justify-evenly" style="max-width: 500px;">
-    <q-tab-panels v-model="tab" animated>
+    <q-tab-panels v-model="tab" animated swipeable>
       <q-tab-panel v-for="section, index in sections" :key="index" :name="section">
         
         <div v-if="isSection(section, 'HOME')" class="column text-center">
@@ -32,8 +32,11 @@
           <div class="text-h4 text-primary">
             Section: {{section}}
           </div>
+          <div class="q-mt-lg">
+            <q-btn rounded outline color="primary" icon="home" label="GO HOME" @click="tab = 'HOME'" />
+          </div>
 
-          <div class="row q-mt-xl q-px-xl justify-center" v-if="section == 'FWC'">
+          <div class="row q-mt-lg q-px-xl justify-center" v-if="section == 'FWC'">
             <div class="col-xs-6 col-sm-4 col-md-3" :class="albumList[`${section} ${index}`] ? '' : 'text-bold'" v-for="index in fwcCount" left-label >
               <q-checkbox color="positive" v-model="albumList[`${section} ${index}`]" :label="`${section} ${index}`" />
             </div>
