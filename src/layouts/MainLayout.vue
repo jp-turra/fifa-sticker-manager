@@ -11,7 +11,16 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
+    <q-footer elevated>
+      <q-tabs
+        v-model="tab"
+        class="text-white"
+      >
+        <q-tab v-for="section, index in sections" :key="index" :name="section" :label="section" />
+      </q-tabs>
+    </q-footer>
+
+    <q-page-container class="row justify-center">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -24,9 +33,25 @@ export default defineComponent({
   name: 'MainLayout',
 
   data() {
-      return {
-        version: "1.0.0"
+    return {
+      version: "1.0.0",
+      sections: ["HOME"]
+    }
+  },
+
+  computed: {
+    tab : {
+      set(value: string) {
+        this.store.setCurrentTab(value)
+      },
+      get(): string {
+        return this.store.getCurrentTab || "HOME"
       }
     },
+  },
+
+  created() {
+    this.sections = this.store.getSections
+  },
 });
 </script>
