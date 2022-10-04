@@ -61,7 +61,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { sectionList, AlbumInterface, HOME_INDEX, BLV_INDEX, FWC_INDEX, believerCount, fwcCount, teamCount } from 'src/interface/album.interface';
-import { type } from 'os';
+
 export default defineComponent({
   name: 'IndexPage',
   data() {
@@ -78,6 +78,7 @@ export default defineComponent({
 
   created() {
     if (Object.keys(this.albumList).length == 0) this.albumList = this.setupAlbum()
+    console.log('i18n', this.$i18n)
   },
 
   computed: {
